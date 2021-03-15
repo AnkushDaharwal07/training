@@ -209,7 +209,7 @@ public class UserController {
 					}
 				}
 				
-				@PostMapping(value = "updateOrderStatus/{orderId}/{orderStatus}")
+				@PostMapping(value = "/seller/updateOrderStatus/{orderId}/{orderStatus}")
 				public ResponseEntity<String> updateOrderStatus(@PathVariable("orderId") Integer orderId, @PathVariable("orderStatus") String orderStatus) throws Exception {
 					try
 					{
