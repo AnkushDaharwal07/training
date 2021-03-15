@@ -2,63 +2,40 @@ package ekart.order.entity;
 
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "productsordered")
-@IdClass(MyKey.class)
 public class ProductsOrdered {
 	
-	@Id
-	int oRDERID;
-	@Id
-	int PRODID;
+	@EmbeddedId
+	MyKey myKey;
 	
 	@Column(nullable = false)
 	int SELLERID;
 	@Column(nullable = false)
 	int QUANTITY;
-	@Column(nullable = false)
-	double price;
 	@Column(nullable = false, length = 60)
 	String STATUS;
+	@Column(nullable = false)
+	double price;
+	
 	
 	public ProductsOrdered() {
 		super();
 	}
 
 
-
-
-	public int getORDERID() {
-		return oRDERID;
+	public MyKey getMyKey() {
+		return myKey;
 	}
 
 
-
-
-	public void setORDERID(int oRDERID) {
-		oRDERID = oRDERID;
+	public void setMyKey(MyKey myKey) {
+		this.myKey = myKey;
 	}
-
-
-
-
-	public int getPRODID() {
-		return PRODID;
-	}
-
-
-
-
-	public void setPRODID(int pRODID) {
-		this.PRODID = pRODID;
-	}
-
-
 
 
 	public int getSELLERID() {
