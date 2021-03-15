@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import ekart.order.dto.MyKeyDTO;
 import ekart.order.dto.OrderDTO;
+import ekart.order.dto.PastOrderDTO;
 import ekart.order.dto.PlaceOrderDTO;
 import ekart.order.dto.ProductsOrderedDTO;
 import ekart.order.entity.MyKey;
@@ -70,7 +71,8 @@ public class OrderService {
 	}
 	
 	public OrderDTO getOrder1( int ORDERID) {
-
+	
+	
 		logger.info("Order {}", ORDERID);
 		
 		
@@ -84,5 +86,30 @@ public class OrderService {
 		}
 		
 		return orderDTO;
+	}
+
+
+
+	// pastorder for for getting all previous order @ankush
+
+	public PastOrderDTO getPastOrder(PastOrderDTO pastOrderDTO) {
+		logger.info("Order {}", pastOrderDTO.getOrderId());
+		
+	
+		
+		List<ProductsOrderedDTO> allProducts=null;
+		List<Order> orders = orderDetailsRepo.findByBuyerId(pastOrderDTO.getBuyerId());
+		for (Order order : orders) {
+			if(order.getSTATUS() == "Delivered") {
+				List<ProductsOrdered> productsOrdereds=productsOrderedRepository.findByOrderId(order.getORDERID());
+				for (ProductsOrdered productsOrdered : productsOrdereds) {
+					allProducts.add(ProductsOrderedDTO.valueOf(productsOrdered));
+				}
+			}
+		}
+		
+		pastOrderDTO.setProductsOrderedDTOs(allProducts);
+		return pastOrderDTO;
+
 	}
 }
