@@ -11,6 +11,6 @@ import ekart.order.entity.ProductsOrdered;
 public interface ProductsOrderedRepository extends JpaRepository<ProductsOrdered, MyKey>{
 
 	
-	List<ProductsOrdered> findByORDERID(int ORDERID);
+	List<ProductsOrdered> findByOrderId(int ORDERID);
 
 }
