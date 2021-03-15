@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import ekart.order.dto.OrderDTO;
+import ekart.order.dto.PastOrderDTO;
 import ekart.order.dto.PlaceOrderDTO;
 import ekart.order.service.OrderService;
 
@@ -42,12 +43,14 @@ public class OrderController {
 		return orderService.getOrder1(ORDERID);
 	}
 	
-	@GetMapping(value = "/prouctorders/{ORDERID}",  produces = MediaType.APPLICATION_JSON_VALUE)
-	public PlaceOrderDTO getOrderWithProduct(@PathVariable int ORDERID) {
+	
+	// changes by ankush for past orders
+	@GetMapping(value = "/pastOrders",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public PastOrderDTO getPastOrders(@RequestBody PastOrderDTO pastOrderDTO) {
 
-		logger.info("OrderDetails {}", ORDERID);
+		logger.info("OrderDetails {}", pastOrderDTO.getOrderId());
 
-		return orderService.getOrder(ORDERID);
+		return orderService.getPastOrder(pastOrderDTO);
 	}
 
 }
