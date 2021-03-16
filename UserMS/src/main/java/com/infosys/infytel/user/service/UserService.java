@@ -20,8 +20,6 @@ import com.infosys.infytel.user.repository.BuyerRepository;
 import com.infosys.infytel.user.repository.SellerRepository;
 import com.infosys.infytel.user.validator.BuyerValidator;
 import com.infosys.infytel.user.validator.SellerValidator;
-import com.infosys.infytel.user.dto.OrderStatus;
-
 
 
 
