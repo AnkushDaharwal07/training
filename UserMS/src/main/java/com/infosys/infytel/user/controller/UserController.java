@@ -50,7 +50,7 @@ public class UserController {
 	private Environment environment;
 	
 	@Value("${order.uri}")
-	String order;
+	String orderUri;
 
 	@Value("${product.uri}")
 	String productUri;
@@ -172,7 +172,7 @@ public class UserController {
 					try {
 						logger.info("Add product to cart{}", cartDTO);
 
-						ProductDTO productDTO=new RestTemplate().getForObject(productUri+"/id/"+cartDTO.getProductId(), ProductDTO.class);
+						ProductDTO productDTO=new RestTemplate().getForObject(productUri+cartDTO.getProductId(), ProductDTO.class);
 						logger.info("product{}", productDTO);
 						String message="";
 						if(cartService.checkQuantity(productDTO, cartDTO)){
@@ -196,12 +196,12 @@ public class UserController {
 					
 				}
 				@GetMapping(value = "buyer/pastorders",consumes = MediaType.APPLICATION_JSON_VALUE)
-				public ResponseEntity<ArrayList<PastOrderDTO>> getPastOrders(@RequestBody PastOrderDTO pastOrderDTO) {
+				public PastOrderDTO getPastOrders(@RequestBody PastOrderDTO pastOrderDTO) {
 					try {
 						logger.info("find the previous orders by buyerId {}",pastOrderDTO.getBuyerId());
-						ArrayList<PastOrderDTO> pastOrderDTOs =userService.getpastOrders(pastOrderDTO);
+						PastOrderDTO pastOrder=new RestTemplate().getForObject(orderUri+"pastOrders", PastOrderDTO.class);
 						// to be return/...............
-						return null;
+						return pastOrder;
 						//return new ResponseEntity<ArrayList<PastOrderDTO>>(,HttpStatus.FOUND);
 					}
 					catch(Exception e) {
