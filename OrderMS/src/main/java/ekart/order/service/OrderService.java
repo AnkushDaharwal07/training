@@ -71,8 +71,7 @@ public class OrderService {
 	}
 	
 	public OrderDTO getOrder1( int ORDERID) {
-	
-	
+
 		logger.info("Order {}", ORDERID);
 		
 		
@@ -87,29 +86,27 @@ public class OrderService {
 		
 		return orderDTO;
 	}
-
-
-
+	
 	// pastorder for for getting all previous order @ankush
 
-	public PastOrderDTO getPastOrder(PastOrderDTO pastOrderDTO) {
-		logger.info("Order {}", pastOrderDTO.getOrderId());
+		public PastOrderDTO getPastOrder(PastOrderDTO pastOrderDTO) {
+			logger.info("Order {}", pastOrderDTO.getOrderId());
+			
 		
-	
-		
-		List<ProductsOrderedDTO> allProducts=null;
-		List<Order> orders = orderDetailsRepo.findByBuyerId(pastOrderDTO.getBuyerId());
-		for (Order order : orders) {
-			if(order.getSTATUS() == "Delivered") {
-				List<ProductsOrdered> productsOrdereds=productsOrderedRepository.findByOrderId(order.getORDERID());
-				for (ProductsOrdered productsOrdered : productsOrdereds) {
-					allProducts.add(ProductsOrderedDTO.valueOf(productsOrdered));
+			
+			List<ProductsOrderedDTO> allProducts=null;
+			List<Order> orders = orderDetailsRepo.findByBuyerId(pastOrderDTO.getBuyerId());
+			for (Order order : orders) {
+				if(order.getSTATUS() == "Delivered") {
+					List<ProductsOrdered> productsOrdereds=productsOrderedRepository.findByORDERID(order.getORDERID());
+					for (ProductsOrdered productsOrdered : productsOrdereds) {
+						allProducts.add(ProductsOrderedDTO.valueOf(productsOrdered));
+					}
 				}
 			}
-		}
-		
-		pastOrderDTO.setProductsOrderedDTOs(allProducts);
-		return pastOrderDTO;
+			
+			pastOrderDTO.setProductsOrderedDTOs(allProducts);
+			return pastOrderDTO;
 
-	}
+		}
 }
