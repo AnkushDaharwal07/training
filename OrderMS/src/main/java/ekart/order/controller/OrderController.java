@@ -43,14 +43,21 @@ public class OrderController {
 		return orderService.getOrder1(ORDERID);
 	}
 	
+	@GetMapping(value = "orders/prouctorders/{ORDERID}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public PlaceOrderDTO getOrderWithProduct(@PathVariable int ORDERID) {
+
+		logger.info("OrderDetails {}", ORDERID);
+
+		return orderService.getOrder(ORDERID);
+	}
 	
 	// changes by ankush for past orders
-	@GetMapping(value = "/pastOrders",  produces = MediaType.APPLICATION_JSON_VALUE)
-	public PastOrderDTO getPastOrders(@RequestBody PastOrderDTO pastOrderDTO) {
+		@GetMapping(value = "orders/pastOrders",  produces = MediaType.APPLICATION_JSON_VALUE)
+		public PastOrderDTO getPastOrders(@RequestBody PastOrderDTO pastOrderDTO) {
 
-		logger.info("OrderDetails {}", pastOrderDTO.getOrderId());
+			logger.info("OrderDetails {}", pastOrderDTO.getOrderId());
 
-		return orderService.getPastOrder(pastOrderDTO);
-	}
+			return orderService.getPastOrder(pastOrderDTO);
+		}
 
 }
