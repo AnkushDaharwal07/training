@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
+Built-By: ankus
+Build-Jdk: 15.0.1
 Implementation-Title: Product-Microservice
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: bhavik.bansal
 Implementation-Vendor-Id: com.infosys
-Build-Jdk: 1.8.0_202
-Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/ProductMS
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/ProductMS
 Created-By: Maven Integration for Eclipse
 

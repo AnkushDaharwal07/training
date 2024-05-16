@@ -110,6 +110,21 @@ public class ProductDTO {
 	public String toString() {
 		return "ProductDTO [prodId=" + prodId + ", Brand=" + brand + ", productname =" + productName + "]";
 	}
+	public Product createEntity() {
+		Product product = new Product();
+		product.setBrand(this.getBrand());
+		product.setCategory(this.getCategory());
+		product.setDescription(this.getDescription());
+		product.setImage(this.getImage());
+		product.setPrice(this.getPrice());
+		product.setProdId(this.getProdId());
+		product.setProductName(this.getProductName());
+		product.setRating(this.getRating());
+		product.setSellerId(this.getSellerId());
+		product.setStock(this.getStock());
+		product.setSubCategory(this.getSubCategory());
+		return product;
+	}
 
 
 }
